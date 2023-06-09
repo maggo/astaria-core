@@ -86,7 +86,7 @@ contract WithdrawKitTesting is TestHelpers {
     wk.redeem(withdrawProxy, withdrawProxy.previewRedeem(vaultTokenBalance));
     vm.stopPrank();
     assertEq(
-      ERC20(PublicVault(publicVault).asset()).balanceOf(address(1)),
+      address(1).balance,
       50 ether
     );
   }
@@ -134,7 +134,7 @@ contract WithdrawKitTesting is TestHelpers {
     wk.redeem(withdrawProxy, withdrawProxy.previewRedeem(vaultTokenBalance));
     vm.stopPrank();
     assertEq(
-      ERC20(PublicVault(publicVault).asset()).balanceOf(address(1)),
+      address(1).balance,
       50 ether
     );
   }
@@ -241,7 +241,7 @@ contract WithdrawKitTesting is TestHelpers {
     vm.stopPrank();
 
     assertEq(
-      WETH9.balanceOf(address(1)),
+      address(1).balance,
       50 ether,
       "LP did not receive all WETH not lent out"
     );
@@ -347,7 +347,7 @@ contract WithdrawKitTesting is TestHelpers {
     vm.stopPrank();
 
     assertEq(
-      WETH9.balanceOf(address(1)),
+      address(1).balance,
       60205479452052000000,
       "LP did not receive all WETH not lent out"
     );
@@ -507,8 +507,8 @@ contract WithdrawKitTesting is TestHelpers {
       "PublicVault should have 0 assets"
     );
     assertEq(
-      WETH9.balanceOf(address(1)),
-      WETH9.balanceOf(address(2)),
+      address(1).balance,
+      address(2).balance,
       "Unequal amounts of WETH"
     );
   }
@@ -650,13 +650,13 @@ contract WithdrawKitTesting is TestHelpers {
     );
 
     assertEq(
-      WETH9.balanceOf(address(1)),
+      address(1).balance,
       50636986777008079750,
       "LPs have different amounts"
     );
 
     assertEq(
-      WETH9.balanceOf(address(2)),
+      address(2).balance,
       51212329242753679750,
       "LPs have different amounts"
     );
@@ -790,18 +790,18 @@ contract WithdrawKitTesting is TestHelpers {
     );
 
     assertEq(
-      WETH9.balanceOf(address(1)),
+      address(1).balance,
       26438357353481199375,
       "LP 1 WETH balance incorrect"
     );
     assertEq(
-      WETH9.balanceOf(address(2)),
+      address(2).balance,
       26438357353481199375,
       "LP 2 WETH balance incorrect"
     );
 
     assertEq(
-      WETH9.balanceOf(address(3)),
+      address(3).balance,
       58630139364418398750,
       "LP 3 WETH balance incorrect"
     );
@@ -887,7 +887,7 @@ contract WithdrawKitTesting is TestHelpers {
     vm.stopPrank();
 
     assertEq(
-      WETH9.balanceOf(address(1)),
+      address(1).balance,
       50000000000053364679,
       "Incorrect LP 1 WETH balance"
     );
@@ -899,7 +899,7 @@ contract WithdrawKitTesting is TestHelpers {
     vm.stopPrank();
 
     assertEq(
-      WETH9.balanceOf(address(2)),
+      address(2).balance,
       35000000000100859377,
       "Incorrect LP 2 WETH balance"
     );
@@ -983,13 +983,13 @@ contract WithdrawKitTesting is TestHelpers {
     wk.redeem(withdrawProxy2, 0);
     vm.stopPrank();
     assertEq(
-      WETH9.balanceOf(address(1)),
+      address(1).balance,
       50000000000053364679,
       "Incorrect LP 1 WETH balance"
     );
 
     assertEq(
-      WETH9.balanceOf(address(2)),
+      address(2).balance,
       11775231481447897052,
       "Incorrect LP 2 WETH balance"
     );
@@ -1055,7 +1055,7 @@ contract WithdrawKitTesting is TestHelpers {
     vm.stopPrank();
 
     assertEq(
-      WETH9.balanceOf(address(1)),
+      address(1).balance,
       50000000000060480050,
       "Incorrect LP 1 WETH balance"
     );
@@ -1232,7 +1232,7 @@ contract WithdrawKitTesting is TestHelpers {
     assertEq(WETH9.balanceOf(publicVault), 0, "PublicVault balance not 0");
 
     assertEq(
-      WETH9.balanceOf(address(1)),
+      address(1).balance,
       51150685882784959500,
       "Incorrect LP 1 balance"
     );
@@ -1303,7 +1303,7 @@ contract WithdrawKitTesting is TestHelpers {
     WithdrawProxy(withdrawProxy1).approve(address(wk), LP1Balance);
     wk.redeem(withdrawProxy1, 0);
     vm.stopPrank();
-    assertEq(WETH9.balanceOf(address(1)), 50 ether, "LP 1 balance incorrect");
+    assertEq(address(1).balance, 50 ether, "LP 1 balance incorrect");
 
     _lendToVault(
       Lender({addr: address(2), amountToLend: 50 ether}),
@@ -1368,7 +1368,7 @@ contract WithdrawKitTesting is TestHelpers {
     wk.redeem(withdrawProxy2, 0);
     vm.stopPrank();
     assertEq(
-      WETH9.balanceOf(address(2)),
+      address(2).balance,
       50575341514451840500,
       "LP 2 balance incorrect"
     );
